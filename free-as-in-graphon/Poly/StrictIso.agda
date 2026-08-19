@@ -31,7 +31,7 @@ open Functor
 -- A strict isomorphism of categories: the underlying functor together
 -- with equivalence proofs for its object action and each hom action.
 -- (Cubical.Categories.Equivalence packages the weaker adjoint/weak
--- notions; both theorems here assert the strict one, so we field it
+-- notions; both theorems here assert the strict one, so it is fielded
 -- directly.)
 record CatIsoStrict (C : Category ℓC ℓC') (D : Category ℓD ℓD')
        : Type (ℓ-max (ℓ-max ℓC ℓC') (ℓ-max ℓD ℓD')) where

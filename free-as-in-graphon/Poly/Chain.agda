@@ -12,7 +12,7 @@
 -- So the coproducts and the initial object of the previous module exist here.
 -- The point of the instance is the other two facts: the adjoining functor is
 -- not full, and there is no morphism from the top to the bottom.  Without
--- those a reader cannot tell whether the construction does anything.
+-- them nothing rules out the construction being degenerate.
 ------------------------------------------------------------------------
 
 module Poly.Chain where

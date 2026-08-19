@@ -194,9 +194,10 @@ module Comparison {ℓ ℓ' ℓc : Level}
 
   ------------------------------------------------------------------
   -- INJECTIVE, in the form that is actually provable here.  Two fences,
-  -- one in each component, ALIGN into a single fence of pairs.  This is
-  -- the step that fails in general -- Fence.ReachabilityGap is exactly
-  -- its failure -- and directedness is what supplies it.
+  -- one in each component, ALIGN into a single fence of pairs.  Without
+  -- some hypothesis on the index this step fails: two zigzags can wander
+  -- through heaps that never meet, and there is then no pair-fence to
+  -- build.  Directedness is what supplies the meeting point.
   --
   -- Stated on classes rather than through effectiveness of the
   -- quotient: the zigzag relation is not proposition-valued, so
