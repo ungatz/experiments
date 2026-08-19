@@ -42,3 +42,4 @@ should depend only on `propext`, `Classical.choice` and `Quot.sound`.
 #print axioms Crops.Ctrl.eqE_iff_eqE'_of_eqF
 #print axioms Crops.Ctrl.eqB_of_eqA_eqE'
 #print axioms Crops.Ctrl.invol_tens_trivial_of_symmetric'
+#print axioms Crops.Ctrl.eqF_of_invertible'

@@ -95,6 +95,66 @@ theorem invol_tens_trivial_of_symmetric' {D : Data P} (hd : D.EqD) (he : D.EqE')
   have hg' : Y * (S * (Y * (S * Y))) = S := hg
   exact alx_trivial_core hAA hSS hAS hex hg'
 
+
+/-! ### Commutativity on invertible arguments, under the other order
+
+The derivation of their (f) on invertible arguments also uses complementarity without (f),
+so it too has to be checked against the order Figure 1 draws.  It survives, and the cheapest
+way to see that is to swap the two colours: the data with `C0` and `C1` exchanged satisfies
+(a), (b) and (d) whenever the original does, and its (e) is the original's (e) in the other
+order.  Applying the derivation to the swapped data and exchanging the arguments back gives
+the statement for the original. -/
+
+/-- The control data with its two colours exchanged. -/
+def Data.swapColours (D : Data P) : Data P where
+  C0 := D.C1
+  C1 := D.C0
+
+theorem eqF_of_invertible' {D : Data P} (ha : D.EqA) (hb : D.EqB) (hd : D.EqD) (he : D.EqE')
+    {n : ℕ} (f₁ f₂ : P.H n) (h₁ : IsInvertible f₁) (h₂ : IsInvertible f₂) :
+    P.cmp (D.C0 n f₁) (D.C1 n f₂) = P.cmp (D.C1 n f₂) (D.C0 n f₁) := by
+  have hXX : ∀ m : ℕ, P.cmp (xw m) (xw m) = P.idm (1 + m) := by
+    intro m; unfold xw
+    rw [← P.tn_cmp, P.invol_invol, P.cmp_idm, P.tn_idm]
+  -- (d) read the other way: `C1` is the `x`-conjugate of `C0`, and conversely.
+  have hd' : ∀ (m : ℕ) (f : P.H m),
+      P.cmp (xw m) (P.cmp (D.C1 m f) (xw m)) = D.C0 m f := by
+    intro m f
+    have h := hd m f
+    calc P.cmp (xw m) (P.cmp (D.C1 m f) (xw m))
+        = P.cmp (xw m) (P.cmp (P.cmp (xw m) (P.cmp (D.C0 m f) (xw m))) (xw m)) := by rw [h]
+      _ = P.cmp (P.cmp (xw m) (xw m)) (P.cmp (D.C0 m f) (P.cmp (xw m) (xw m))) := by
+            simp [P.cmp_assoc]
+      _ = D.C0 m f := by rw [hXX m]; rw [P.idm_cmp, P.cmp_idm]
+  -- the swapped data satisfies (a), (b), (d) and (e)
+  have ha' : (D.swapColours).EqA := by
+    intro m f g
+    show D.C0 m (P.cmp g f) = P.cmp (D.C0 m g) (D.C0 m f)
+    letI := homMonoid P (1 + m)
+    have hX : (xw m : P.H (1 + m)) * xw m = 1 := hXX m
+    have hc : ∀ h : P.H m, D.C0 m h = xw m * D.C1 m h * xw m := by
+      intro h; rw [← hd' m h]; simp [hom_mul_def, P.cmp_assoc]
+    have hk : D.C1 m (P.cmp g f) = D.C1 m g * D.C1 m f := ha m f g
+    show D.C0 m (P.cmp g f) = D.C0 m g * D.C0 m f
+    rw [hc, hc, hc, hk]
+    calc xw m * (D.C1 m g * D.C1 m f) * xw m
+        = xw m * D.C1 m g * (xw m * xw m) * (D.C1 m f * xw m) := by rw [hX]; simp [mul_assoc]
+      _ = xw m * D.C1 m g * xw m * (xw m * D.C1 m f * xw m) := by simp [mul_assoc]
+  have hb' : (D.swapColours).EqB := by
+    intro m
+    letI := homMonoid P (1 + m)
+    show D.C0 m (P.idm m) = P.idm (1 + m)
+    rw [← hd' m (P.idm m), hb m]
+    show (xw m : P.H (1 + m)) * (1 * xw m) = 1
+    rw [one_mul]; exact hXX m
+  have hd'' : (D.swapColours).EqD := by
+    intro m f; exact hd' m f
+  have he' : (D.swapColours).EqE := by
+    intro m f; exact he m f
+  have key := eqF_of_invertible ha' hb' hd'' he' f₂ f₁ h₂ h₁
+  exact key.symm
+
+
 end Ctrl
 
 end Crops
