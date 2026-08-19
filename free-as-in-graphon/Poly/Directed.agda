@@ -3,9 +3,9 @@
 ------------------------------------------------------------------------
 -- Coproducts and an initial object in the polynomial category
 --
--- For an index that is directed, meaning proposition-valued homs with a chosen
--- common source on every pair, the comparison of the previous module is an
--- isomorphism.  If in addition the canonical left distributor of the base is
+-- For an index that is directed, meaning proposition-valued homs, at least one
+-- object, and a chosen common source on every pair, the comparison of the
+-- previous module is assembled into an isomorphism here.  If in addition the canonical left distributor of the base is
 -- invertible, that comparison packages the base coproduct objects as genuine
 -- coproducts in the polynomial category.  The base initial object stays
 -- initial for the same reason.

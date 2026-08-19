@@ -20,8 +20,8 @@
 -- The unit laws strip the unit heap by the left and right unitors together
 -- with the triangle; associativity is the index's associator, and the
 -- obligation reduces to the distributor's associativity, the pentagon and
--- naturality.  The right unit law needs kellyRho below, derived from the
--- pentagon, the triangle and naturality alone, mirroring kellyLambda.
+-- naturality.  The right unit law needs kellyρ below, derived from the
+-- pentagon, the triangle and naturality alone, mirroring kellyλ.
 --
 -- What is built here is C[x : jΣ] as a category, together with the functor
 -- adjoining the base into it.  What is not: the bicategory, of which only the
@@ -252,7 +252,7 @@ module PolyOver {ℓΣ ℓΣ' ℓC ℓC'}
     ∙ cong (δ⁻¹⟨ w , ΣM.unit ⟩ CM.⋆_) (δF₁ρΣ-eq w)
 
   ----------------------------------------------------------------------
-  -- kellyRho: the right-unit Kelly coherence (mirror of kellyLambda,
+  -- kellyρ: the right-unit Kelly coherence (mirror of kellyλ,
   -- upstream candidate).  alpha<x,y,1> . rho<x ox y> == id ox rho<y>,
   -- from the pentagon, the triangle, and naturality alone.
   ----------------------------------------------------------------------

@@ -9,11 +9,15 @@
 --
 --   colim (F × G)  →  colim F × colim G
 --
--- which is shown surjective, and injective by an alignment argument.  Also
--- here: the natural numbers under the reverse order as an instance, and the
--- observation that it has no least heap.
+-- which is shown surjective.  The companion lemma `align` supplies the step an
+-- injectivity argument needs, turning zigzags on both components into a path
+-- upstairs; the isomorphism itself is assembled in Poly.Directed, where
+-- proposition-valued homs are available.  Also here: the natural numbers under
+-- the reverse order as an instance, and the observation that it has no least
+-- heap.
 --
--- What is mechanized is the comparison being a bijection.  The step from there
+-- So what is mechanized here is surjectivity and the alignment lemma, not a
+-- packaged bijection.  The step from there
 -- to distributivity of the polynomial category is not carried out here, and no
 -- monoidal structure, distributor or category appears in this file.  In
 -- particular, having no least heap does not by itself show that a chosen core

@@ -6,7 +6,8 @@
 -- The chain bottom < middle < top, with the meet as tensor, the top as unit,
 -- the join as coproduct and the bottom as initial object, is a distributive
 -- symmetric monoidal base whose canonical distributor is invertible.  The
--- natural numbers under addition give a directed index.
+-- natural numbers under the reverse order, with addition as the monoidal
+-- structure, give a directed index.
 --
 -- So the coproducts and the initial object of the previous module exist here.
 -- The point of the instance is the other two facts: the adjoining functor is
